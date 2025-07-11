@@ -18,12 +18,12 @@
       <h2 class="text-2xl font-semibold mb-4 border-b pb-2 text-white">📰 Gym News</h2>
       <ul class="space-y-2">
         <li class="bg-white p-4 rounded shadow">
-          <h3 class="font-bold">New Branch Opening in South District</h3>
-          <p class="text-sm text-gray-600">June 1, 2025</p>
+          <h3 class="font-bold">belum diisi</h3>
+          <p class="text-sm text-gray-600">.</p>
         </li>
         <li class="bg-white p-4 rounded shadow">
-          <h3 class="font-bold">Summer Reading Program Registration</h3>
-          <p class="text-sm text-gray-600">Open until July 15</p>
+          <h3 class="font-bold">belum diisi</h3>
+          <p class="text-sm text-gray-600">.</p>
         </li>
       </ul>
     </section>
@@ -40,6 +40,6 @@
         <span class="bg-white px-4 py-2 rounded shadow">24 Bulan free 4 Bulan</span>
       </div>
     </section>
-    
+
     @endsection
   </main>

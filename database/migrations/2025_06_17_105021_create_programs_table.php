@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('author');
-            $table->integer('published_year');
-            $table->string('category');
-            $table->string('isbn')->unique();
-            $table->text('excerpt');
+            $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
+            $table->string('program_name');
+            $table->text('latihan_plan');
+            $table->text('nutrisi_tips');
+            $table->text('rekomendasi');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('programs');
     }
 };
