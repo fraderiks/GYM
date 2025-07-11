@@ -17,8 +17,8 @@ class Category extends Model
         'name',
     ];
 
-    public function books(): HasMany
+    public function programs(): HasMany
     {
-        return $this->hasMany(Book::class, 'category', 'name');
+        return $this->hasMany(Program::class, 'category', 'name');
     }
 }

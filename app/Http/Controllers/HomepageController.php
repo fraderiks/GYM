@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Program;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
     public function index() {
-        $books = Book::limit(4)->get();
-        return view('homepage.index', ['books' => $books]);
+        $programs = Program::limit(4)->get();
+        return view('homepage.index', ['programs' => $programs]);
     }
 
-    public function book(int $id) {
-        $book = Book::findOrFail($id);
-        return view('homepage.book', ['book' => $book]);
+    public function program(int $id) {
+        $program = Program::findOrFail($id);
+        return view('homepage.program', ['program' => $program]);
     }
 }

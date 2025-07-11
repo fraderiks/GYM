@@ -1,20 +1,22 @@
 <?php
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthController; // Pastikan ini mengacu pada AuthController Anda
 use Illuminate\Support\Facades\Route;
 use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\Admin\CategoryController;
 
 
-Route::get('/', [HomepageController::class, 'index']);
-Route::get('/book/{id}', [HomepageController::class, 'book']);
+Route::get('/', [HomepageController::class, 'index'])->name('homepage.index');
+Route::get('/program/{id}', [HomepageController::class, 'program'])->name('homepage.program');
 
 Route::controller(AuthController::class)
     ->group(function () {
         Route::get('/login', 'login')->name('login');
         Route::post('/login', 'authenticate')->name('authenticate');
         Route::post('/logout', 'logout')->name('logout');
+        Route::get('/register', 'registerForm')->name('register'); // Rute untuk menampilkan form registrasi
+        Route::post('/register', 'register')->name('register.submit'); // Rute untuk memproses data registrasi
     });
 
 Route::middleware('auth')->group(
@@ -45,6 +47,6 @@ function categoryAdminRoutes(): RouteRegistrar{
             Route::get('/{id}/edit', 'edit')->name('edit');
             Route::put('/{id}', 'update')->name('update');
             Route::delete('/{id}', 'destroy')->name('destroy');
-            
+
         });
 }

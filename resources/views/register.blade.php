@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
+  <title>Register - Dosage Gym</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col bg-cover bg-center" style="background-image: url('foto/gym.jpg')">
+<body class="bg-red-100 text-gray-800 font-sans min-h-screen flex flex-col bg-cover bg-center" style="background-image: url('foto/gym.jpg')">
 
   <header class="bg-red-800 text-white p-6">
     <div class="container mx-auto text-center">
@@ -18,10 +18,26 @@
 
   <main class="flex-grow flex items-center justify-center">
     <div class="bg-white rounded-2xl p-8 w-full max-w-sm shadow-lg mt-10">
-      <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">Login</h2>
+      <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">Register</h2>
 
-      <form method="post" action="{{ route('authenticate') }}">
+      <form method="POST" action="{{ route('register') }}">
         @csrf
+
+        <div class="mb-4">
+          <label for="name" class="block text-gray-600 text-sm font-medium">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Your Full Name"
+            value="{{ old('name') }}"
+            class="mt-1 w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-3"
+            required autofocus />
+          @error('name')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+          @enderror
+        </div>
+
         <div class="mb-4">
           <label for="email" class="block text-gray-600 text-sm font-medium">Email</label>
           <input
@@ -29,11 +45,15 @@
             name="email"
             type="email"
             placeholder="you@example.com"
+            value="{{ old('email') }}"
             class="mt-1 w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-3"
             required />
+          @error('email')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+          @enderror
         </div>
 
-        <div class="mb-6">
+        <div class="mb-4">
           <label for="password" class="block text-gray-600 text-sm font-medium">Password</label>
           <input
             id="password"
@@ -41,26 +61,33 @@
             type="password"
             placeholder="********"
             class="mt-1 w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-3"
-            required />
+            required autocomplete="new-password" />
+          @error('password')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+          @enderror
         </div>
 
-        @error('login')
         <div class="mb-6">
-          <p class="text-red-500">{{ $message }}</p>
+          <label for="password_confirmation" class="block text-gray-600 text-sm font-medium">Confirm Password</label>
+          <input
+            id="password_confirmation"
+            name="password_confirmation"
+            type="password"
+            placeholder="********"
+            class="mt-1 w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-3"
+            required autocomplete="new-password" />
         </div>
-        @enderror
 
         <button
           type="submit"
           class="w-full rounded-xl bg-blue-600 text-white font-semibold p-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-          Login
+          Register
         </button>
       </form>
 
-
       <div class="mt-4 text-center text-sm">
-        Don't have an account yet?
-        <a href="{{ route('register') }}" class="text-blue-600 hover:underline font-semibold">Register here</a>
+        Already have an account?
+        <a href="{{ route('login') }}" class="text-blue-600 hover:underline font-semibold">Login here</a>
       </div>
 
     </div>
