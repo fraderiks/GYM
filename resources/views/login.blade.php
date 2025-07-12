@@ -1,74 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
 
-<body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col bg-cover bg-center" style="background-image: url('foto/gym.jpg')">
+@extends('layouts.app')
 
-  <header class="bg-red-800 text-white p-6">
-    <div class="container mx-auto text-center">
-      <h1 class="text-3xl font-bold">Dosage Gym</h1>
-      <p class="text-sm">"Your body, your machine 💪"</p>
-    </div>
-  </header>
+@section('title', 'Login to Dosage Gym')
 
-  <main class="flex-grow flex items-center justify-center">
-    <div class="bg-white rounded-2xl p-8 w-full max-w-sm shadow-lg mt-10">
-      <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">Login</h2>
+@section('body_class', 'login-page login-body-bg')
 
-      <form method="post" action="{{ route('authenticate') }}">
-        @csrf
-        <div class="mb-4">
-          <label for="email" class="block text-gray-600 text-sm font-medium">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="you@example.com"
-            class="mt-1 w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-3"
-            required />
+@section('content')
+
+
+    <main class="login-main">
+        <div class="login-card">
+            <h2>Login</h2>
+
+            <form method="post" action="{{ route('authenticate') }}">
+                @csrf
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="you@example.com"
+                        class="form-control"
+                        required
+                        autofocus />
+                    @error('email')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="********"
+                        class="form-control"
+                        required />
+                    @error('password')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                @error('login')
+                    <div class="form-group">
+                        <p class="error-message">{{ $message }}</p>
+                    </div>
+                @enderror
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    Login
+                </button>
+            </form>
+
+            <div class="login-link-group">
+                Don't have an account yet?
+                <a href="{{ route('register') }}" class="login-register-link">Register here</a>
+                <br> 
+                <a href="{{ route('homepage.index') }}" class="login-back-link">Back to Homepage</a>
+            </div>
+
         </div>
+    </main>
 
-        <div class="mb-6">
-          <label for="password" class="block text-gray-600 text-sm font-medium">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="********"
-            class="mt-1 w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-3"
-            required />
-        </div>
-
-        @error('login')
-        <div class="mb-6">
-          <p class="text-red-500">{{ $message }}</p>
-        </div>
-        @enderror
-
-        <button
-          type="submit"
-          class="w-full rounded-xl bg-blue-600 text-white font-semibold p-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-          Login
-        </button>
-      </form>
-
-
-      <div class="mt-4 text-center text-sm">
-        Don't have an account yet?
-        <a href="{{ route('register') }}" class="text-blue-600 hover:underline font-semibold">Register here</a>
-      </div>
-
-    </div>
-  </main>
-
-  <footer class="bg-grey-800 text-white text-center p-4">
-    &copy; 2025 Dosage Gym. No part may be distributed without permission from Dosage Gym. All rights reserved.
-  </footer>
-
-</body>
-</html>
+@endsection
