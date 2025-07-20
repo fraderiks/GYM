@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dosage Gym</title>
+  <title>Dosage Gym - Your Body, Your Machine Life.</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col bg-cover bg-center" style="background-image: url('foto/gym.jpg')">
@@ -43,8 +43,17 @@
     @yield('content')
   </main>
 
-  <footer class="bg-grey-800 text-white text-center p-4 mt-10">
-    &copy; 2025 Dosage Gym. No part may be distributed without permission from Dosage Gym. All rights reserved.
+  <footer class="bg-gray-800 text-white text-center p-4 mt-auto">
+    <div class="container mx-auto">
+      <p>&copy; {{ date('Y') }} Dosage Gym. No part may be distributed without permission from Dosage Gym. All rights reserved.</p>
+      <div class="mt-2 space-x-4">
+        <a href="#" aria-label="Facebook" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="X" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
   </footer>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</body>
 </body>
 </html>

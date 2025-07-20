@@ -1,4 +1,4 @@
-@extends('app')
+@extends('gym')
 
 @section('content')
 <h1>{{ $formHeading }}</h1>

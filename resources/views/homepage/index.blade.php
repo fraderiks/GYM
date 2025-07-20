@@ -1,111 +1,120 @@
-{{-- resources/views/homepage/index.blade.php --}}
-@extends('layouts.app')
-
-@section('title', 'Welcome to Dosage Gym')
+@extends('gym')
 
 @section('content')
 
-    <section class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="container">
-            <h2>Unleash Your Potential.</h2>
-            <p>Personalized workouts, expert guidance, and a community that empowers you.</p>
-            <a href="#packages" class="btn btn-primary">View Membership Plans</a>
+    <section class="relative bg-cover bg-center h-96 flex items-center justify-center text-white" style="background-image: url('https://via.placeholder.com/1500x500/000000/FFFFFF?text=Gym+Hero+Image');">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="container mx-auto text-center z-10 p-4">
+            <h2 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Maksimalkan Potensi Anda.</h2>
+            <p class="text-lg md:text-xl mb-8">Latihan yang disesuaikan, bimbingan dari para ahli, serta komunitas yang mendukung dan memberdayakan Anda.</p>
+            <a href="#packages" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition duration-300 hover:scale-105">Membership Package</a>
         </div>
     </section>
 
-    <section class="exercise-programs-section">
-        <div class="container">
-            <h3>Recommended Exercise Program</h3>
-            <div class="program-cards">
-                {{-- ⭐ This is where the magic happens: Loop through each program --}}
+    <div class="container mx-auto p-6">
+
+        {{-- Exercise Programs Section --}}
+        <section class="py-12">
+            <h3 class="text-3xl font-bold text-white text-center mb-8">Recommended Exercise Program</h3> {{-- Changed text-gray-800 to text-white --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($programs as $program)
-                    <div class="program-card">
-                        {{-- Use the icon_class from the database --}}
-                        <i class="{{ $program->icon_class }} program-icon"></i>
-                        {{-- Use the title from the database --}}
-                        <h4>{{ $program->title }}</h4>
-                        {{-- Use the subtitle from the database --}}
-                        <p>{{ $program->subtitle }}</p>
-                        {{-- Use the description from the database --}}
-                        <p>{{ $program->description }}</p>
-                        {{-- Use the link_url and link_text from the database --}}
-                        <a href="{{ $program->link_url }}" class="learn-more-link">{{ $program->link_text }} <i class="fas fa-arrow-right"></i></a>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center transform transition duration-300 hover:scale-105">
+                        <i class="{{ $program->hari }} text-indigo-600 text-5xl mb-4"></i>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-2">{{ $program->program_name }}</h4>
+                        <p class="text-gray-600 mb-2">{{ $program->latiha_plan }}</p>
+                        <p class="text-gray-700 text-sm mb-4">{{ $program->description }}</p>
+                        <a href="{{ $program->link_url }}" class="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center justify-center">
+                            {{ $program->link_text }} <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 @endforeach
             </div>
-        </div>
-    </section>
+        </section>
 
-    {{-- ... (rest of your index.blade.php content, like Gym News and Membership Packages) ... --}}
-
-    <section class="gym-news-section">
-        <div class="container">
-            <h3>Gym News & Updates</h3>
-            <div class="news-items">
-                <div class="news-item">
-                    <i class="fas fa-bell news-icon"></i>
-                    <div class="news-content">
-                        <h4>New Equipment Arrival!</h4>
-                        <p class="news-date">July 12, {{ date('Y') }}</p>
-                        <p>We've added brand new dumbbells (up to 100kg!) and a state-of-the-art rowing machine. Come try them today!</p>
-                        <a href="#" class="read-more-link">Read More <i class="fas fa-angle-right"></i></a>
+        {{-- Gym News Section --}}
+        <section class="py-12">
+            <h3 class="text-3xl font-bold text-white text-center mb-8">Gym News & Updates</h3> {{-- Changed text-gray-800 to text-white --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg flex items-start space-x-4">
+                    <i class="fas fa-bell text-blue-500 text-3xl mt-1"></i>
+                    <div class="flex-1">
+                        <h4 class="text-xl font-semibold text-gray-900 mb-1">New Equipment Arrival!</h4>
+                        <p class="text-gray-500 text-xs mb-2">July 12, {{ date('Y') }}</p>
+                        <p class="text-gray-700 mb-3">We've added brand new dumbbells (up to 100kg!) and a state-of-the-art rowing machine. Come try them today!</p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center">
+                            Read More <i class="fas fa-angle-right ml-1"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="news-item">
-                    <i class="fas fa-trophy news-icon"></i>
-                    <div class="news-content">
-                        <h4>Monthly Challenge: Plank It Out!</h4>
-                        <p class="news-date">July 01, {{ date('Y') }}</p>
-                        <p>Join the July "Plank It Out" challenge. Hold your longest plank and win 1 free month membership!</p>
-                        <a href="#" class="read-more-link">Join Challenge <i class="fas fa-angle-right"></i></a>
+                <div class="bg-white p-6 rounded-lg shadow-lg flex items-start space-x-4">
+                    <i class="fas fa-trophy text-yellow-500 text-3xl mt-1"></i>
+                    <div class="flex-1">
+                        <h4 class="text-xl font-semibold text-gray-900 mb-1">Monthly Challenge: Plank It Out!</h4>
+                        <p class="text-gray-500 text-xs mb-2">July 01, {{ date('Y') }}</p>
+                        <p class="text-gray-700 mb-3">Join the July "Plank It Out" challenge. Hold your longest plank and win 1 free month membership!</p>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center">
+                            Join Challenge <i class="fas fa-angle-right ml-1"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="packages" class="package-categories-section">
-        <div class="container">
-            <h3>Choose Your Membership Package</h3>
-            <div class="package-cards">
-                <div class="package-card">
-                    <h4>1 Month Flex</h4>
-                    <p class="price">$50<span class="per-month">/month</span></p>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check-circle"></i> Basic Gym Access</li>
-                        <li><i class="fas fa-check-circle"></i> Locker Room</li>
-                        <li><i class="fas fa-times-circle"></i> Group Classes</li>
-                        <li><i class="fas fa-times-circle"></i> Personal Trainer</li>
-                    </ul>
-                    <a href="#" class="btn btn-secondary">Select Plan</a>
+        {{-- Membership Packages Section --}}
+        <section id="packages" class="py-12">
+            <h3 class="text-3xl font-bold text-white text-center mb-8">Choose Your Membership Package</h3> {{-- Changed text-gray-800 to text-white --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+
+                {{-- 1 Month Flex Package --}}
+                <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between transform transition duration-300 hover:scale-105">
+                    <div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">1 Month Flex</h4>
+                        <p class="text-4xl font-extrabold text-indigo-600 mb-4">$50<span class="text-lg font-normal text-gray-600">/month</span></p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i> Basic Gym Access</li>
+                            <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i> Locker Room</li>
+                            <li class="flex items-center text-gray-500"><i class="fas fa-times-circle text-red-500 mr-2"></i> Group Classes</li>
+                            <li class="flex items-center text-gray-500"><i class="fas fa-times-circle text-red-500 mr-2"></i> Personal Trainer</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="inline-block bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-full text-center">Select Plan</a>
                 </div>
-                <div class="package-card featured">
-                    <span class="badge">Most Popular</span>
-                    <h4>6 Months Saver</h4>
-                    <p class="price">$40<span class="per-month">/month</span></p>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check-circle"></i> Full Gym Access</li>
-                        <li><i class="fas fa-check-circle"></i> All Group Classes</li>
-                        <li><i class="fas fa-check-circle"></i> Locker Room</li>
-                        <li><i class="fas fa-check-circle"></i> 1 Free PT Session</li>
-                    </ul>
-                    <a href="#" class="btn btn-primary">Select Plan</a>
+
+                {{-- 6 Months Saver Package (Featured) --}}
+                <div class="bg-indigo-700 text-white p-6 rounded-lg shadow-xl flex flex-col justify-between transform transition duration-300 scale-105 border-4 border-yellow-400">
+                    <span class="block bg-yellow-400 text-indigo-900 text-xs font-bold px-3 py-1 rounded-full absolute -top-3 left-1/2 -translate-x-1/2 shadow-md">Most Popular</span>
+                    <div>
+                        <h4 class="text-2xl font-bold mb-2">6 Months Saver</h4>
+                        <p class="text-4xl font-extrabold text-yellow-300 mb-4">$40<span class="text-lg font-normal text-white">/month</span></p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-300 mr-2"></i> Full Gym Access</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-300 mr-2"></i> All Group Classes</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-300 mr-2"></i> Locker Room</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-300 mr-2"></i> 1 Free PT Session</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="inline-block bg-white hover:bg-gray-100 text-indigo-700 font-bold py-3 px-6 rounded-full text-center shadow-lg">Select Plan</a>
                 </div>
-                <div class="package-card">
-                    <h4>24 Months Ultimate</h4>
-                    <p class="price">$35<span class="per-month">/month</span></p>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check-circle"></i> Premium Gym Access</li>
-                        <li><i class="fas fa-check-circle"></i> All Group Classes</li>
-                        <li><i class="fas fa-check-circle"></i> Locker Room</li>
-                        <li><i class="fas fa-check-circle"></i> Unlimited PT Sessions</li>
-                        <li><i class="fas fa-check-circle"></i> Nutritional Guidance</li>
-                    </ul>
-                    <a href="#" class="btn btn-secondary">Select Plan</a>
+
+                {{-- 24 Months Ultimate Package --}}
+                <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between transform transition duration-300 hover:scale-105">
+                    <div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">24 Months Ultimate</h4>
+                        <p class="text-4xl font-extrabold text-indigo-600 mb-4">$35<span class="text-lg font-normal text-gray-600">/month</span></p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i> Premium Gym Access</li>
+                            <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i> All Group Classes</li>
+                            <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i> Locker Room</li>
+                            <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i> Unlimited PT Sessions</li>
+                            <li class="flex items-center text-gray-700"><i class="fas fa-check-circle text-green-500 mr-2"></i> Nutritional Guidance</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="inline-block bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-full text-center">Select Plan</a>
                 </div>
+
             </div>
-        </div>
-    </section>
+        </section>
+
+    </div>
 
 @endsection

@@ -1,4 +1,4 @@
-@extends('app')
+@extends('gym')
 
 @section('content')
     <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row gap-6">

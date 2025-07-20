@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $count = Category::count();
-        $categories = Category::query()->with(['books']);
+        $categories = Category::query()->with(['programs']);
         if ($request->query('ordering', 'ascending') === 'descending') {
             $categories->orderBy('name', 'desc');
         }
@@ -107,7 +107,7 @@ class CategoryController extends Controller
 
         $oldCategory->update($validated);
 
-        return redirect(route('admin.category.show', $oldCategory->name));
+        return redirect(route('admin.category.show', $oldCategory->id));
     }
 
     /**

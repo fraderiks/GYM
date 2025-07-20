@@ -16,18 +16,16 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::post('/login', 'authenticate')->name('authenticate');
     Route::post('/logout', 'logout')->name('logout');
-    Route::get('/register', 'registerForm')->name('register');           // Show registration form
-    Route::post('/register', 'register')->name('register.submit');       // Process registration
+    Route::get('/register', 'registerForm')->name('register');      
+    Route::post('/register', 'register')->name('register.submit'); 
 });
 
 // 🔒 Admin-only routes (requires authentication)
-Route::middleware('auth')->group(function () {
-    adminRoutes(); // Register all admin routes
-
-    // ⭐ Added a basic 'home' route for redirection after login
-    Route::get('/home', function () {
-        return view('dashboard'); // Assuming you have a 'dashboard.blade.php' view
-    })->name('home');
+Route::middleware(['auth', 'admin'])->group(function () {
+    // Semua rute di dalam grup ini hanya bisa diakses oleh user yang sudah login DAN memiliki role 'admin'
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/edit-programs', [AdminController::class, 'editPrograms'])->name('admin.edit_programs');
+    
 });
 
 // 🛠️ Admin main route group
@@ -42,7 +40,6 @@ function adminRoutes(): RouteRegistrar
         });
 }
 
-// 📂 Category management under /admin/category
 function categoryAdminRoutes(): RouteRegistrar
 {
     return Route::controller(CategoryController::class)
@@ -52,6 +49,8 @@ function categoryAdminRoutes(): RouteRegistrar
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/create', 'store')->name('store');
+            // Add this line for the show route
+            Route::get('/{id}', 'show')->name('show'); // <-- Add this line
             Route::get('/{id}/edit', 'edit')->name('edit');
             Route::put('/{id}', 'update')->name('update');
             Route::delete('/{id}', 'destroy')->name('destroy');

@@ -1,4 +1,4 @@
-@extends('app')
+@extends('gym')
 
 @section('content')
 {{-- Menambahkan warna latar belakang lembut untuk seluruh halaman --}}

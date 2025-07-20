@@ -1,4 +1,4 @@
-@extends('app')
+@extends('gym')
 
 @section('content')
 <div>
@@ -18,10 +18,10 @@
     </a>
 
     <ul>
-    @forelse($category->books as $book)
-        <li>{{ $book->title  }}</li>
+    @forelse($category->programs as $program)
+        <li>{{ $program->title  }}</li>
     @empty
-        <li>No book found</li>
+        <li>No Program found</li>
     @endforelse
     </ul>
 </div>
