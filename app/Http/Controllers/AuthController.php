@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User; // Pastikan ini diimpor untuk model User
 use Illuminate\Support\Facades\Hash; // Pastikan ini diimpor untuk hashing password
 use Illuminate\Validation\ValidationException; // Untuk penanganan error validasi
+use App\UserRole; // IMPORT INI: Pastikan path ini benar sesuai lokasi enum Anda
 
 class AuthController extends Controller
 {
     // render login form
     public function login()
     {
-        return view('login');
+        return view('login'); // Menggunakan 'login' sesuai dengan kode Anda
     }
 
     public function authenticate(Request $request): RedirectResponse
@@ -27,20 +28,31 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            // Get the authenticated user
+            $user = Auth::user();
+
+            // Check if the user is an admin using the 'role' enum value
+            // Pastikan 'Admin' adalah case yang benar di enum App\UserRole
+            if ($user->role === UserRole::Admin->value) {
+                return redirect()->intended(route('admin.dashboard')); // Redirect to admin dashboard
+            }
+
+            // If not an admin, redirect to the default intended page or homepage
+            return redirect()->intended('/'); // Redirect to homepage for non-admins
         }
 
+        // If authentication fails, redirect back with an error message
         return back()->withErrors([
-            'login' => 'Invalid credentials',
-        ]);
+            'login' => 'Invalid credentials', // Menggunakan 'login' sesuai dengan kode Anda
+        ])->onlyInput('email'); // Tetap hanya input email yang di-flash
     }
 
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
-        $request->session()->invalidate(); // Perbaikan: Gunakan $request->session() bukan $request()
-        $request->session()->regenerateToken(); // Perbaikan: Gunakan $request->session() bukan $request()
-        
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect('/');
     }
 
@@ -54,7 +66,7 @@ class AuthController extends Controller
     public function registerForm()
     {
         // Asumsi Anda memiliki view 'register.blade.php' di folder 'resources/views'
-        return view('register'); 
+        return view('register');
     }
 
     /**
@@ -79,6 +91,9 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password), // Hash password sebelum menyimpan
+            // Menggunakan nilai dari enum untuk role default
+            // Pastikan 'Member' adalah case yang benar di enum App\UserRole untuk pengguna biasa
+            'role' => UserRole::Member->value, // Default to 'Member' role for new registrations
         ]);
 
         // Opsional: Loginkan pengguna secara otomatis setelah pendaftaran berhasil

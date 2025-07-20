@@ -1,27 +1,28 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware; 
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth; // Import Auth Facade
+use Illuminate\Support\Facades\Auth;
+use App\UserRole; 
 
 class AdminMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        // Pastikan pengguna sudah login DAN memiliki role 'admin'
-        if (Auth::check() && Auth::user()->role === 'admin') {
-            return $next($request);
+
+        if (Auth::check() && Auth::user()->role === UserRole::Admin->value) {
+            return $next($request); 
         }
 
-        // Jika tidak, redirect ke halaman home atau login dengan pesan error
-        return redirect('/login')->with('error', 'You do not have admin access.');
+        return redirect('/')->with('error', 'You do not have admin access.');
     }
 }
