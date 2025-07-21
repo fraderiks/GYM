@@ -14,6 +14,25 @@ Dosage GYM adalah aplikasi web yang memiliki beberapa keunggulan yang tidak dimi
 - CSS
 - JavaScript
 
+## Cara Install 
+
+- clone the repository 
+git clone https://github.com/fraderiks/GYM.git
+
+composer install
+composer update
+npm install
+php artisan key::generate
+
+- Database Configuration
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=dosage_gym
+DB_USERNAME=root
+DB_PASSWORD=
+
+
 
 
 
