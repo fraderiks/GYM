@@ -1,6 +1,4 @@
-<!-- resources/views/admin/edit-programs.blade.php -->
-
-@extends('gym') {{-- Adjust 'gym' to your actual admin layout file --}}
+ @extends('gym')
 
 @section('content')
 <div class="bg-gray-50 min-h-screen py-8">
@@ -30,7 +28,7 @@
                                     Nama Program
                                 </th>
                                 <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Rencana Latihan
+                                    Program Latihan
                                 </th>
                                 <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Tips Nutrisi
@@ -44,7 +42,7 @@
                                 <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Diperbarui Pada
                                 </th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th> {{-- For Action Button --}}
+                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,7 +74,6 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
                                     <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    {{-- You would typically add a delete button here as well --}}
                                 </td>
                             </tr>
                             @endforeach

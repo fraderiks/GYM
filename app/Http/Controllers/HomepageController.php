@@ -13,10 +13,10 @@ class HomepageController extends Controller
     public function index()
     {
         // ⭐ Fetch all programs from the 'programs' table using the Program model
-        $programs = Program::all();
+        $programs = Program::limit(4)->get();
 
         // ⭐ Pass the fetched programs to the 'homepage.index' view
-        return view('homepage.index', compact('programs'));
+        return view('homepage.index', ['programs' => $programs]);
     }
 
     /**
@@ -24,10 +24,7 @@ class HomepageController extends Controller
      */
     public function program($id)
     {
-        // This is for a specific program page, not directly related to the homepage list.
-        // You might fetch a single program here:
-        // $program = Program::findOrFail($id);
-        // return view('homepage.program', compact('program'));
+        $programs = Program::findOrFail($id);
         return view('homepage.program', ['id' => $id]);
     }
 }

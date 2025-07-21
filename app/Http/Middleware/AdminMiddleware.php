@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Middleware; 
+namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\UserRole; 
+use Illuminate\Support\Facades\Auth; // Import Auth facade
 
 class AdminMiddleware
 {
@@ -18,11 +17,21 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (Auth::check() && Auth::user()->role === UserRole::Admin->value) {
-            return $next($request); 
+        // Pastikan pengguna sudah login
+        if (!Auth::check()) {
+            // Jika tidak login, arahkan ke halaman login
+            return redirect()->route('login'); // Ganti 'login' dengan nama rute login Anda
         }
 
-        return redirect('/')->with('error', 'You do not have admin access.');
+        // Asumsi model User Anda memiliki kolom 'is_admin' (boolean)
+        // Atau Anda memiliki relasi peran, dll.
+        // Sesuaikan logika ini dengan cara Anda mengelola peran admin.
+        if (Auth::user()->is_admin) { // Contoh: memeriksa kolom is_admin di tabel users
+            return $next($request); // Lanjutkan permintaan jika pengguna adalah admin
+        }
+
+        // Jika pengguna login tetapi bukan admin, arahkan ke halaman yang tidak diizinkan
+        // Atau kembali ke halaman sebelumnya dengan pesan error
+        return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
     }
 }

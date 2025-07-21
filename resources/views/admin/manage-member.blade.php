@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('gym')
 @section('content')
 <div class="p-6">
     <h1 class="text-2xl font-bold mb-4">Kelola Member</h1>

@@ -19,13 +19,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($programs as $program)
                     <div class="bg-white p-6 rounded-lg shadow-lg text-center transform transition duration-300 hover:scale-105">
-                        <i class="{{ $program->hari }} text-indigo-600 text-5xl mb-4"></i>
-                        <h4 class="text-xl font-semibold text-gray-900 mb-2">{{ $program->program_name }}</h4>
-                        <p class="text-gray-600 mb-2">{{ $program->latiha_plan }}</p>
-                        <p class="text-gray-700 text-sm mb-4">{{ $program->description }}</p>
-                        <a href="{{ $program->link_url }}" class="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center justify-center">
-                            {{ $program->link_text }} <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
+                        <i class="{{ $program-> hari }} text-indigo-600 text-5xl mb-4"></i>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-2">{{ $program->hari }}</h4>
+                        <p class="text-gray-600 mb-2">{{ $program->program_name }}</p>
+                        <p class="text-gray-700 text-sm mb-4">BY: {{ $program->rekomendasi }}</p>
+                        <a href="/programs/{{ $program['id'] }}">{{ $program['hari'] }}</a>
                     </div>
                 @endforeach
             </div>
