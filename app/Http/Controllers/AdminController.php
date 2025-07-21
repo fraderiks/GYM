@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     public function editPrograms()
     {
-        $programs = Program::all(); 
+        $programs = Program::all();
 
         return view('admin.edit-programs', compact('programs'));
     }
@@ -27,10 +27,5 @@ class AdminController extends Controller
     public function recommendPrograms()
     {
         return view('admin.recommend-programs');
-    }
-
-    public function manageMembers()
-    {
-        return view('admin.manage-members');
     }
 }

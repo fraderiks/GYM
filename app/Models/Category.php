@@ -9,16 +9,15 @@ class Category extends Model
 {
     protected $table = 'categories';
 
-    protected $primaryKey = 'name';
-    protected $keyType = 'string';
-    public $incrementing = false;
+    public $timestamps = true;
 
     protected $fillable = [
-        'name',
+        'program_name',
+        'description',
     ];
 
     public function programs(): HasMany
     {
-        return $this->hasMany(Program::class, 'category', 'name');
+        return $this->hasMany(Program::class, 'category_id');
     }
 }
