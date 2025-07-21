@@ -33,13 +33,13 @@
                 <p class="text-sm opacity-90">Ubah detail program yang sudah ada</p>
             </a>
 
-            <a href="{{ route('admin.members.manage') }}" class="block bg-red-500 hover:bg-red-600 transition-all duration-300 rounded-lg shadow-md p-6 text-white text-center flex flex-col items-center justify-center transform hover:scale-105">
-                <div class="text-4xl mb-3">
-                    <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H2v-2a3 3 0 015.356-1.857M9 20v-2a3 3 0 00-3-3H4a3 3 0 00-3 3v2m3-3h.01M6 15h.01M12 10a2 2 0 11-4 0 2 2 0 014 0zm0 0V8m0 4v2m0 0h2m-2 0H8"></path></svg>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Edit Member</h3>
-                <p class="text-sm opacity-90">Ubah informasi anggota gym</p>
-            </a>
+            <a href="{{ route('admin.users.index') }}" class="block bg-red-500 hover:bg-red-600 transition-all duration-300 rounded-lg shadow-md p-6 text-white text-center flex flex-col items-center justify-center transform hover:scale-105">
+    <div class="text-4xl mb-3">
+        <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path></svg>
+    </div>
+    <h3 class="text-xl font-semibold mb-2">User Management</h3>
+    <p class="text-sm opacity-90">Kelola data user dan member</p>
+</a>
         </div>
     </div>
 </div>
