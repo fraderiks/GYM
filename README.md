@@ -19,10 +19,10 @@ Dosage GYM adalah aplikasi web yang memiliki beberapa keunggulan yang tidak dimi
 - clone the repository 
 git clone https://github.com/fraderiks/GYM.git
 
-composer install
-composer update
-npm install
-php artisan key::generate
+-composer install
+-composer update
+-npm install
+-php artisan key::generate
 
 - Database Configuration
 DB_CONNECTION=mysql
