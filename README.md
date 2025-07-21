@@ -32,6 +32,11 @@ DB_DATABASE=dosage_gym
 DB_USERNAME=root
 DB_PASSWORD=
 
+npm run dev
+
+php artisan serve
+
+
 
 
 
