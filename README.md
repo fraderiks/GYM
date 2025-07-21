@@ -9,5 +9,10 @@ Dosage GYM adalah aplikasi web yang memiliki beberapa keunggulan yang tidak dimi
 
 ## Teknologi Yang Digunakan 
 
+- Laravel
+- Blade
+- CSS
+- JavaScript
+
 
 
